@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- BootstrapのCSS読み込み -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!-- jQuery読み込み -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BootstrapのJS読み込み -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+  body,#wrapper {display: flex; flex-direction: column; min-height: 100vh;}
+  footer {margin-top: auto;}
+</style>
+<title>detailsearch</title>
+</head>
+<body>
+<div id="wrapper">
+
+<header class="sticky-top">
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand navbar-dark" href="/topselect">GMS(ガマス)</a>
+        <small class="navbar-text">団体を超えていくwebアプリ</small>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><form method="post" th:action="@{/logout}"><input type="submit" value="Logout" class="navbar-brand btn btn-primary"></form></li>
+      </ul>
+    </div>
+  </nav>
+  </header><br>
+  
+  <div style="text-align: center;"class="container">
+  <h1>【詳細検索】</h1><br>
+  
+  <form th:action="@{/detailsearchresult}" method="post" class=”form-inline”>
+  	<p>『学年×性別×支払いの有無(支払い済み⇒0、未払い⇒1、その他⇒2)による検索』</p>
+  　	<select name="grade">
+      <option value=1>1</option>
+      <option value=2>2</option>
+      <option value=3>3</option>
+      <option value=4>4</option>
+    </select>
+    <input type="radio" name="gender" value="男性" checked>男性
+    <input type="radio" name="gender" value="女性">女性
+    <select name="payFlag">
+      <option value=0>0</option>
+      <option value=1>1</option>
+      <option value=2>2</option>
+    </select>
+    <input type="hidden" name="hiddendata" value="ggp">
+  　	<input type="submit" value="検索" class="btn btn-primary">
+  </form><br><br>
+  
+  <form th:action="@{/detailsearchresult}" method="post" class=”form-inline”>
+  	<p>『指定以上の学年による検索』</p>
+  	<select name="grade2">
+      <option value=1>1</option>
+      <option value=2>2</option>
+      <option value=3>3</option>
+      <option value=4>4</option>
+    </select>
+    <input type="hidden" name="hiddendata" value="gradeup">
+  　	<input type="submit" value="検索" class="btn btn-primary">
+  </form><br><br>
+  
+  <form th:action="@{/detailsearchresult}" method="post" class=”form-inline”>
+  	<p>『指定以下の学年による検索』</p>
+  	<select name="grade3">
+      <option value=1>1</option>
+      <option value=2>2</option>
+      <option value=3>3</option>
+      <option value=4>4</option>
+    </select>
+    <input type="hidden" name="hiddendata" value="gradedown">
+  　	<input type="submit" value="検索" class="btn btn-primary">
+  </form><br><br>
+  
+  <form th:action="@{/detailsearchresult}" method="post" class=”form-inline”>
+  	<p>『指定間の学年による検索(小、大の順で)』</p>
+  	<select name="grade4">
+      <option value=1>1</option>
+      <option value=2>2</option>
+      <option value=3>3</option>
+      <option value=4>4</option>
+    </select>
+    <select name="grade5">
+      <option value=1>1</option>
+      <option value=2>2</option>
+      <option value=3>3</option>
+      <option value=4>4</option>
+    </select>
+    <input type="hidden" name="hiddendata" value="gradebetween">
+  　	<input type="submit" value="検索" class="btn btn-primary">
+  </form>
+  </div><br><br>
+  
+  <footer class="navbar navbar-default">
+    <a class="navbar-brand" href="/topselect">GMS(ガマス)</a>
+    <small class="navbar-text">団体を超えていくwebアプリ</small>
+  </footer>
+</div>
+</body>
+</html>

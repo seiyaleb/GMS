@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+<!-- BootstrapのCSS読み込み -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!-- jQuery読み込み -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BootstrapのJS読み込み -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+  body,#wrapper {display: flex; flex-direction: column; min-height: 100vh;}
+  footer {margin-top: auto;}
+</style>
+<title>topselect</title>
+</head>
+<body>
+<div id="wrapper">
+
+<header class="sticky-top">
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand navbar-dark" href="/topselect">GMS(ガマス)</a>
+        <small class="navbar-text">団体を超えていくwebアプリ</small>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><form method="post" th:action="@{/logout}"><input type="submit" value="Logout" class="navbar-brand btn btn-primary"></form></li>
+      </ul>
+    </div>
+  </nav>
+  </header><br>
+  
+  <div style="text-align: center;"class="container">
+  <h1>【メンバー管理トップ】</h1><br>
+  
+  <p>ようこそ<span sec:authentication="principal.username"></span>さん</p>
+  <div sec:authorize="hasRole('ADMIN')">
+  	<p>今は<b>ADMIN</b>権限でログインしています。</p>
+  </div>
+  <div sec:authorize="hasRole('USER')">
+  	<p>今は<b>USER</b>権限でログインしています。</p> 
+  </div><br><br>
+  
+  <h3>メンバー情報を追加し、同時に全検索ができます。</h3>
+  <form action="/insertallsearch" method="get">
+    <input type="submit" value="追加・全検索" class="btn btn-primary">
+  </form><br>
+  
+  <h3>一つの項目による条件で検索ができます。</h3>
+  <form action="/eachsearch" method="get">
+    <input type="submit" value="条件検索" class="btn btn-primary">
+  </form><br>
+  
+  <h3>さらに詳しい条件で検索ができます。</h3>
+  <form action="/detailsearch" method="get">
+    <input type="submit" value="詳細検索" class="btn btn-primary">
+  </form>
+  </div><br>
+  
+  <footer class="navbar navbar-default">
+    <a class="navbar-brand" href="/topselect">GMS(ガマス)</a>
+    <small class="navbar-text">団体を超えていくwebアプリ</small>
+  </footer>
+ 
+</div>
+</body>
+</html>

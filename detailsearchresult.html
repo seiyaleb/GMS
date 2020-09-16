@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- BootstrapのCSS読み込み -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!-- jQuery読み込み -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BootstrapのJS読み込み -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+  body,#wrapper {display: flex; flex-direction: column; min-height: 100vh;}
+  footer {margin-top: auto;}
+</style>
+<title>detailsearchresult</title>
+</head>
+<body>
+<div id="wrapper">
+
+<header class="sticky-top">
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand navbar-dark" href="/topselect">GMS(ガマス)</a>
+        <small class="navbar-text">団体を超えていくwebアプリ</small>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><form method="post" th:action="@{/logout}"><input type="submit" value="Logout" class="navbar-brand btn btn-primary"></form></li>
+      </ul>
+    </div>
+  </nav>
+  </header><br>
+  
+  <div style="text-align: center;"class="container">
+  <h1>【詳細検索結果】</h1><br>
+  
+  <table border="1" class="table table-hover">
+    <tr>
+      <th>メンバー名（あだ名）</th>
+      <th>性別</th>
+      <th>学年</th>
+      <th>役職</th>
+      <th>支払いの有無</th>
+      <th>更新ボタン</th>
+      <th>削除ボタン</th>
+    </tr>
+    <tr th:each="obj: ${list}">
+      <td th:text="${obj.membername}"></td>
+      <td th:text="${obj.gender}"></td>
+      <td th:text="${obj.grade}"></td>
+      <td th:text="${obj.position}"></td>
+      <td th:text="${obj.payFlag}"></td>
+      <td><form action="/update" method="get"><input type="submit" value="UPDATE" class="btn btn-primary"><input type="hidden" name="id" th:value="${obj.memberid}"></form></td>
+      <td><form action="/delete" method="get"><input type="submit" value="DELETE" class="btn btn-primary"><input type="hidden" name="id" th:value="${obj.memberid}"></form></td>
+    </tr>
+  </table>
+  <br><br>
+  
+  <form action="/detailsearch" method="get">
+    <input type="submit" value="詳細検索に戻る" class="btn btn-primary">
+  </form>
+  </div><br><br>
+  
+  <footer class="navbar navbar-default">
+    <a class="navbar-brand" href="/topselect">GMS(ガマス)</a>
+    <small class="navbar-text">団体を超えていくwebアプリ</small>
+  </footer>
+  
+</div>
+</body>
+</html>

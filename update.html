@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- BootstrapのCSS読み込み -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!-- jQuery読み込み -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BootstrapのJS読み込み -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+  body,#wrapper {display: flex; flex-direction: column; min-height: 100vh;}
+  footer {margin-top: auto;}
+</style>
+<title>update</title>
+</head>
+<body>
+<div id="wrapper">
+
+  <header class="sticky-top">
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand navbar-dark" href="/topselect">GMS(ガマス)</a>
+        <small class="navbar-text">団体を超えていくwebアプリ</small>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><form method="post" th:action="@{/logout}"><input type="submit" value="Logout" class="navbar-brand btn btn-primary"></form></li>
+      </ul>
+    </div>
+  </nav>
+  </header><br>
+  
+  <div style="text-align: center;"class="container">
+  <h1>【メンバー情報の更新】</h1><br>
+  
+  <table border="1" class="table">
+  <form th:action="@{/update2}" method="POST" th:object="${formModel}" class=”form-inline”>
+    <input type="hidden" name="memberid" th:value="*{memberid}">
+    <tr>
+      <th>メンバー名（あだ名）</th>
+      <td><input type="text" name="membername" class="form-control" required th:value="*{membername}" autocomplete="off"></td>
+    </tr>
+    <tr>
+      <th>性別</th>
+      <td><input type="radio" name="gender" class="form-control" th:field="*{gender}" value="男性">男性
+      <input type="radio" name="gender" class="form-control" th:field="*{gender}" value="女性">女性</td>
+    </tr>
+    <tr>
+      <th>学年</th>
+      <td>
+      <select name="grade" class="form-control">
+      	<option th:field="*{grade}" value=1>1</option>
+      	<option th:field="*{grade}" value=2>2</option>
+      	<option th:field="*{grade}" value=3>3</option>
+      	<option th:field="*{grade}" value=4>4</option>
+      </select></td>
+    </tr>
+    <tr>
+      <th>役職</th>
+      <td><input type="text" name="position" class="form-control" required th:value="*{position}" autocomplete="off"></td>
+    </tr>
+    <tr>
+      <th>支払いの有無(支払い済み⇒0、未払い⇒1、その他⇒2)</th>
+      <td><select name="payFlag" class="form-control">
+      	<option th:field="*{payFlag}" value=0>0</option>
+      	<option th:field="*{payFlag}" value=1>1</option>
+      	<option th:field="*{payFlag}" value=2>2</option>
+      </select></td>
+    </tr>
+    <tr>
+      <th></th><td><input type="submit" value="更新" class="btn btn-primary"></td>
+    </tr>
+   </form>
+  </table><br>
+  
+  <form action="/insertallsearch" method="get">
+      <input type="submit" value="追加・全検索に戻る" class="btn btn-primary">
+   	</form><br>
+   	
+  </div>
+  	
+  	<footer class="navbar navbar-default">
+    <a class="navbar-brand" href="/topselect">GMS(ガマス)</a>
+    <small class="navbar-text">団体を超えていくwebアプリ</small>
+  </footer>
+</div>
+</body>
+</html>

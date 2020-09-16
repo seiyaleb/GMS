@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- BootstrapのCSS読み込み -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!-- jQuery読み込み -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BootstrapのJS読み込み -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+  body,#wrapper {display: flex; flex-direction: column; min-height: 100vh;}
+  footer {margin-top: auto;}
+</style>
+<title>delete</title>
+</head>
+<body>
+<div id="wrapper">
+
+  <header class="sticky-top">
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand navbar-dark" href="/topselect">GMS(ガマス)</a>
+        <small class="navbar-text">団体を超えていくwebアプリ</small>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><form method="post" th:action="@{/logout}"><input type="submit" value="Logout" class="navbar-brand btn btn-primary"></form></li>
+      </ul>
+    </div>
+  </nav>
+  </header><br>
+  
+  <div style="text-align: center;"class="container">
+  <h1>【メンバー情報の削除】</h1><br>
+  
+  <table border="1" th:object="${formModel}" class="table">
+  <form th:action="@{/delete2}" method="POST">
+    <input type="hidden" name="id" th:value="*{memberid}">
+    <tr>
+      <th th:text="|メンバー名（あだ名）: *{membername}|"></th>
+    </tr>
+    <tr>
+      <th th:text="|性別: *{gender}|"></th>
+    </tr>
+    <tr>
+      <th th:text="|学年: *{grade}|"></th>
+    </tr>
+    <tr>
+      <th th:text="|役職: *{position}|"></th>
+    </tr>
+    <tr>
+      <th th:text="|支払いの有無(支払い済み⇒0、未払い⇒1、その他⇒2): *{payFlag}|"></th>
+    </tr>
+    <tr>
+      <th><input type="submit" value="削除" class="btn btn-primary"></th>
+    </tr>
+   	</form>
+   	</table><br>
+   	
+   	<form action="/insertallsearch" method="get">
+      <input type="submit" value="追加・全検索に戻る" class="btn btn-primary">
+   	</form><br>
+   	</div>
+   	
+   	<footer class="navbar navbar-default">
+    <a class="navbar-brand" href="/topselect">GMS(ガマス)</a>
+    <small class="navbar-text">団体を超えていくwebアプリ</small>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- BootstrapのCSS読み込み -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!-- jQuery読み込み -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BootstrapのJS読み込み -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+  body,#wrapper {display: flex; flex-direction: column; min-height: 100vh;}
+  footer {margin-top: auto;}
+</style>
+<title>eachsearch</title>
+</head>
+<body>
+<div id="wrapper">
+
+  <header class="sticky-top">
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand navbar-dark" href="/topselect">GMS(ガマス)</a>
+        <small class="navbar-text">団体を超えていくwebアプリ</small>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><form method="post" th:action="@{/logout}"><input type="submit" value="Logout" class="navbar-brand btn btn-primary"></form></li>
+      </ul>
+    </div>
+  </nav>
+  </header><br>
+  
+  <div style="text-align: center;"class="container">
+  <h1>【メンバー情報の条件検索】</h1><br>
+  
+  <form th:action="@{/eachsearchresult}" method="POST" class=”form-inline”>
+  　　　<div class="form-group">
+  	<p>『あだ名検索』</p>
+  	<div class="row">
+  	  <div class="col-xs-4 col-xs-offset-4">
+  　	    <input type="text" name="membername" class="form-control" required autocomplete="off">
+      </div>
+    </div>
+    </div>
+    <input type="submit" value="検索" class="btn btn-primary">
+    <input type="hidden" name="hiddendata" value="membername">
+  </form><br><br>
+  
+  <form th:action="@{/eachsearchresult}" method="post" class=”form-inline”>
+  	<p>『性別検索』</p>
+  　	<input type="radio" name="gender" value="男性" checked>男性
+    <input type="radio" name="gender" value="女性">女性
+    <input type="hidden" name="hiddendata" value="gender">
+    <input type="submit" value="検索" class="btn btn-primary">
+  </form><br><br>
+  
+  <form th:action="@{/eachsearchresult}" method="post" class=”form-inline”>
+    <div class="form-group">
+  	<p>『役職検索』</p>
+  	<div class="row">
+  	  <div class="col-xs-4 col-xs-offset-4">
+  　		<input type="text" name="position" class="form-control" required autocomplete="off">
+      </div>
+    </div>
+    </div>
+    <input type="submit" value="検索" class="btn btn-primary">
+    <input type="hidden" name="hiddendata" value="position">
+  </form><br><br>
+  
+  <form th:action="@{/eachsearchresult}" method="post" class=”form-inline”>
+  	<p>『学年検索』</p>
+  　	<select name="grade">
+      <option value=1>1</option>
+      <option value=2>2</option>
+      <option value=3>3</option>
+      <option value=4>4</option>
+    </select>
+    <input type="hidden" name="hiddendata" value="grade">
+    <input type="submit" value="検索" class="btn btn-primary">
+  </form><br><br>
+  
+  <form th:action="@{/eachsearchresult}" method="post" class=”form-inline”>
+  	<p>『支払いの有無の検索(支払い済み⇒0、未払い⇒1、その他⇒2)』</p>
+  　	<select name="payFlag">
+      <option value=0>0</option>
+      <option value=1>1</option>
+      <option value=2>2</option>
+    </select>
+    <input type="hidden" name="hiddendata" value="payFlag">
+    <input type="submit" value="検索" class="btn btn-primary">
+  </form>
+  </div><br><br>
+  
+  <footer class="navbar navbar-default">
+    <a class="navbar-brand" href="/topselect">GMS(ガマス)</a>
+    <small class="navbar-text">団体を超えていくwebアプリ</small>
+  </footer>
+  
+</div>
+</body>
+</html>

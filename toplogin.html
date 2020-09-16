@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html　xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+<!-- BootstrapのCSS読み込み -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!-- jQuery読み込み -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BootstrapのJS読み込み -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+  body,#wrapper {display: flex; flex-direction: column; min-height: 100vh;}
+  footer {margin-top: auto;}
+</style>
+<title>login</title>
+</head>
+<body>
+　　<div id="wrapper">
+
+  <header class="sticky-top">
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand navbar-dark" href="/login">GMS(ガマス)</a>
+        <small class="navbar-text">団体を超えていくwebアプリ</small>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">about</a></li>
+		<li><a href="#">contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  </header><br>
+  
+  <div class="container">
+  <h3>このオンライン上で、大学サークルやインカレなど学生団体でのイベントに参加するメンバー情報を一括で管理・処理できます。どうぞお使いください。</h3>
+  <h3>ただし、下記ログインフォームからログインしてください。</h3><br>
+  
+  <p>※まだ新規無料登録していない人は<a href="/signup">こちらから</a></p><br><br>
+  
+  <div class="jumbotron">
+  <div style="text-align: center;" class="container">
+  <h4>【ログインフォーム】</h4><br>
+  
+  <form th:action="@{/login}" method="post" class=”form-inline”>
+  	<div th:if="${iserror}" style="color: red;">
+  	  <p>ログインできませんでした。やりなおしてください。</p>
+  	</div>
+  	<div class="form-group">
+  	<p>ユーザー名</p>
+  	<div class="row">
+  	  <div class="col-xs-4 col-xs-offset-4">
+  	    <input type="text" name="username" class="form-control" autofocus="autofocus" required>
+  	  </div>
+  	</div>
+  	</div>
+  	<div class="form-group">
+  	<p>パスワード</p>
+  	<div class="row">
+  	  <div class="col-xs-4 col-xs-offset-4">
+  	    <input type="password" name="password" class="form-control" required autocomplete="off"><br>
+  	  </div>
+  	</div>
+  	</div>
+  	<p><input type="submit" value="Login" class="btn btn-primary"></p>
+  </form>
+  </div>
+  </div>
+  </div><br><br>
+  
+  <footer class="navbar navbar-default">
+    <a class="navbar-brand" href="/login">GMS(ガマス)</a>
+    <small class="navbar-text">団体を超えていくwebアプリ</small>
+  </footer>
+  
+</div>
+</body>
+</html>
